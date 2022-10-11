@@ -3,25 +3,25 @@ import React from 'react'
 const App = () => {
 
   function isValidUsername(username){
-    if(username.length<3 || username.length>10) {alert("username must contain at least three, at most ten characters");return false;}
+    if(username.length<3 || username.length>10) {console.log("username must contain at least three, at most ten characters");return false;}
     if(username[0]<'a'||username[0]>'z')
       if(username[0]<'A'||username[0]>'Z')
-        {alert("username must start with a letter");return false}
+        {console.log("username must start with a letter");return false}
     for (let i = 0; i < username.length; i++) {
       if(username[i]>='a' && username[i]<='z' || username[i]>='A' && username[i]<='Z' || username[i]>='0' && username[i]<='9') continue;
-      else {alert("only letters and numbers are allowed in username");return false;}
+      else {console.log("only letters and numbers are allowed in username");return false;}
     }
     for (let i = 0; i < username.length; i++) {
       if(username[i]>='a' && username[i]<='z' || username[i]>='A' && username[i]<='Z') return true
     }
-    alert("only letter is not allowed in username")
+    console.log("only letter is not allowed in username")
     return false
   }
   function isValidPassword(password){
-    if(password.length<5 || password.length>10) {alert("password must contain at least five, at most ten characters");return false;}
+    if(password.length<5 || password.length>10) {console.log("password must contain at least five, at most ten characters");return false;}
     for (let i = 0; i < password.length; i++) {
       if(password[i]>='a' && password[i]<='z' || password[i]>='A' && password[i]<='Z' || password[i]>='0' && password[i]<='9') continue;
-      else {alert("only letters and numbers are allowed in password");return false;}
+      else {console.log("only letters and numbers are allowed in password");return false;}
     }
     let n = false; let l = false;
     for (let i = 0; i < password.length; i++) {
@@ -29,7 +29,7 @@ const App = () => {
       if(password[i]>='0' && password[i]<='9') n = true
     }
     if(n && l) return true;
-    alert("must contain at least one letter, one number")
+    console.log("must contain at least one letter, one number")
     return false;
   }
   
@@ -38,12 +38,15 @@ const App = () => {
     console.log("in registerUser");
     if(isValidUsername(event.target.username.value) && isValidPassword(event.target.password.value))
       alert("Registered")
+    else alert("Ragistration failed!")
   }
 
   let loginUser = (event)=> {
     event.preventDefault();
     console.log("in loginUser");
-    
+    if(event.target.email.value=="" || event.target.password.value=="")
+      alert("Login failed")
+    else alert("Login Successfull")
   }
 
   return (
